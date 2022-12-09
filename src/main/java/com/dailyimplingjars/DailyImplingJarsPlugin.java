@@ -1,6 +1,5 @@
 package com.dailyimplingjars;
 
-import com.google.inject.Provides;
 import javax.inject.Inject;
 import lombok.extern.slf4j.Slf4j;
 import net.runelite.api.ChatMessageType;
@@ -13,7 +12,6 @@ import net.runelite.client.chat.ChatColorType;
 import net.runelite.client.chat.ChatMessageBuilder;
 import net.runelite.client.chat.ChatMessageManager;
 import net.runelite.client.chat.QueuedMessage;
-import net.runelite.client.config.ConfigManager;
 import net.runelite.client.eventbus.Subscribe;
 import net.runelite.client.plugins.Plugin;
 import net.runelite.client.plugins.PluginDescriptor;
@@ -31,19 +29,10 @@ public class DailyImplingJarsPlugin extends Plugin
 	private Client client;
 
 	@Inject
-	private DailyImplingJarsConfig config;
-
-	@Inject
 	private ChatMessageManager chatMessageManager;
 
 	private long lastReset;
 	private boolean loggingIn;
-
-	@Provides
-	DailyImplingJarsConfig provideConfig(ConfigManager configManager)
-	{
-		return configManager.getConfig(DailyImplingJarsConfig.class);
-	}
 
 	@Override
 	public void startUp()
